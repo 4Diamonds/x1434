@@ -1,0 +1,17 @@
+h2 Clicks
+
+table.table
+	tr
+		th User
+		th Click ID
+		th Page name
+		th Page Owner
+		th
+	- @clicks.each do |click|
+		tr
+			td= click.user	
+			td= click.id
+			td= click.page
+			td= click.page.owner
+			td
+p= link_to 'Voltar', :back

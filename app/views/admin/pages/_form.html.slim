@@ -1,0 +1,10 @@
+= simple_form_for [:user, @page] do |f|
+  fieldset
+  = f.error_notification
+	  = f.association :user, collection: @users, as: :radio_buttons, label: false
+	  = f.association :category, collection: @categories, as: :radio_buttons, label: false
+	  = f.input :url
+	  = f.input :title
+	  = f.input :value, collection: (2..10).step(1), prompt: false
+	  = f.input :published
+  = f.submit

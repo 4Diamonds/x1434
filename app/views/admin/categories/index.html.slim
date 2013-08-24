@@ -1,0 +1,22 @@
+h1 Categorias
+p= link_to 'Nova categoria', [:new, :admin, :category], title: "Nova categoria", class: 'btn'
+
+table.table
+  tr
+    th Name
+    th Active
+    th Slug
+    th
+  - @categories.each do |category|
+    tr
+      td= category.name
+      td= category.slug
+      td= category.active
+      td
+        = link_to 'Edit', [:edit, :admin, category]
+        - if category.active == true
+          = link_to 'Desactivate', [:category_desactivate, :admin, category]
+        - if category.active == false
+          = link_to 'Activate', [:category_activate, :admin, category]
+        = link_to 'Destroy', [:admin, category], method: :delete, data: { confirm: 'Are you sure?' }
+p= link_to 'Voltar', :back

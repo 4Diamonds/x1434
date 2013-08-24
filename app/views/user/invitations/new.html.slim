@@ -1,0 +1,10 @@
+h2.title Indicar um amigo
+= render '/user/subnav'
+
+p Indique um amigo para participar, se ele se cadastrar no <b>ClickMySocial</b> você ganha 10 coins de créditos, na hora!!!
+
+= simple_form_for [:user, @invitation] do |f|
+  = f.input :name
+  = f.input :email
+  = f.input :token, as: :hidden, input_html: {value: Devise.friendly_token}
+  = f.submit

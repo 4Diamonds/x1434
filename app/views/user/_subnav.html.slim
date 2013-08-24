@@ -1,0 +1,4 @@
+nav.sub-nav
+  - Category.active.each do |category|
+    = link_to category, [:user, category], title: category
+br    

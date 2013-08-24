@@ -1,0 +1,6 @@
+h2.title Minha Conta
+= render '/user/subnav'
+
+h2 Cash atual: #{number_to_currency(current_user.cash)}
+h2 Coins atual: #{number_to_currency(current_user.coin)}
+p= link_to 'Comprar Credito', nil, class: "btn"

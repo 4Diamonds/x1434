@@ -1,0 +1,11 @@
+h2.title Get your Daily Bonus
+= render '/user/subnav'
+
+h3 Daily Bonus
+= simple_form_for [:user, @reward] do |f|
+  = f.input :kind, as: :hidden, input_html: { value: "Daily Bonus"}
+  = f.input :value, as: :hidden, input_html: { value: 10 }
+  = f.submit
+
+
+

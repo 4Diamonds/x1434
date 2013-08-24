@@ -1,0 +1,36 @@
+h2.title My Withdraws
+= render '/user/subnav'
+
+- if current_user.can_withdraw?
+
+	- unless (current_user.pagseguro? && current_user.paypal?)
+
+		p= link_to 'New Withdraw', [:new, :user, :withdraw]
+	- else
+		p Please add a pagseguro or paypal email to your account
+		p= link_to 'Edit Account', [:edit, :user, :registration]
+
+- else
+	p You need min R$ 50,00 cash to withdraw		
+
+- unless @withdraws.any?
+    p You do not have any withdraws until now
+-else
+
+	h2 Withdraw 
+	table.table
+	  tr
+	    th Id
+	    th Value
+	    th Data
+	    th Paid
+	  - @withdraws.each do |withdraw|
+	    tr
+	      td= withdraw.id
+	      td= withdraw.value
+	      td= withdraw.created_at
+	      td= withdraw.paid
+  
+
+= link_to 'Menu', :root
+= link_to 'voltar', :back

@@ -1,0 +1,26 @@
+h1 All orders
+
+table.table
+	tr
+		th User
+		th Package
+		th Value
+		th Data
+		th Return
+		th Paid
+		th
+	- @orders.each do |order|
+		tr
+			td= order.user.name
+			td= order.package
+			td= order.value
+			td= l(order.created_at, format: :short)
+			td= order.return
+			td= order.paid
+			td
+				- if order.paid == false
+					= link_to 'Pay', [:pay_order, :admin, order]
+				- if order.paid == true
+					= link_to 'UnPay', [:unpay_order, :admin, order]
+				
+p= link_to 'Voltar', :back

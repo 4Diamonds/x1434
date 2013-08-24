@@ -1,0 +1,18 @@
+h2.title Comprar um Package
+= render '/user/subnav'
+
+h3 Buy Coins
+= simple_form_for [:user, @order] do |f|
+  = f.association :package, collection: @packages_coins, as: :radio_buttons, :required => true, label: false
+  = f.input :gateway, collection: Order::GATEWAYS, as: :radio_buttons, :required => true, prompt: false
+  = f.submit
+
+h3 Buy Credits
+= simple_form_for [:user, @order] do |f|
+  = f.input :package_id, as: :hidden, input_html: { name: "package_id", value: "8"}
+  = f.input :value, collection: (10..250).step(10), prompt: false, :required => true, input_html: { name: "value"}
+  = f.input :gateway, collection: Order::GATEWAYS, as: :radio_buttons, :required => true, prompt: false
+  = f.submit
+
+
+

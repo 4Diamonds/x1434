@@ -1,0 +1,66 @@
+h2 fb comment
+- @pages.each do |label, pages|
+  .half-column(class="#{cycle('left', 'right')}")
+    h3= label ? 'Click for Money!' : 'Click for Coins!'
+    ul.pages    
+      - pages.each do |page|
+        li
+          - if page.owner.coins > 0
+            strong= page.title
+            br
+            = link_to "Like #{number_to_coins(page.value - 1)}", "#like-click", class: 'window-open', 'data-page' => page.url, 'data-token' => page.token
+          - else
+            strong= page.title
+            br
+            = link_to "Like #{number_to_currency((page.value.to_f - 1) / 100)}", "#like-click", class: 'window-open green', 'data-page' => page.url, 'data-token' => page.token
+          
+#data-working(data-comments='0' data-url='none' data-token='none' data-kind='none')
+javascript:
+  $('.window-open').click(function(e){
+    var page    = $(this).data('page');
+    var token   = $(this).data('token');
+    var _object = $(this).parent('li');
+    var win     = new_window(_object, page, token);
+    var url     = 'https://graph.facebook.com/'+page;
+    var kind    = $(this).data('kind');
+    
+    $('#data-working').data('url', url);
+    $('#data-working').data('token', token);
+    
+    FB.api(url, function(response) { $('#data-working').data('comments', response.comments); });
+    window_listener(win);
+    e.preventDefault();
+  });
+  
+  function new_window(element, page, token) {
+    var top   = (screen.height / 2) - (600 / 2);
+    var left  = (screen.width /  2) - (980 / 2);
+    var win   = window.open(page, "", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=980, height=600, top='+top+', left='+left);
+    return win;
+  }
+  
+  function window_listener(win, onclose) {
+    var timer   = setTimeout(function() { window_listener(win, onclose); }, 100);
+    var closing = false;
+    try { if(win.closed || win.top == null){ closing = true }} catch(e){ closing = true }
+    if(closing) {
+      clearTimeout(timer);
+      
+      var comments = $('#data-working').data('comments');
+      var url   = $('#data-working').data('url');
+      var token = $('#data-working').data('token');
+      
+
+      FB.api(url, function(response) {
+        if(comments < parseInt(response.comments)) {
+          $('.msg').html("Okay! You comment the page!");
+          $.get('/user/pages/click_comment?t='+token, {}, function(data, text, xhr){ if (xhr.status == 200) $("#pages-area").html(data); });
+          return true;
+        } else {
+          $('.msg').html("Facebook said you didn't comment this page!");
+          return false 
+        }
+      });
+    }
+    return closing;
+  }

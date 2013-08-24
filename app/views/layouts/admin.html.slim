@@ -1,0 +1,30 @@
+doctype 5
+html
+  head
+    title Facebook::Liker-Admin
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+body
+  #session
+    .wrap
+      h1 CMS-ADMIN
+      nav 
+        small #{current_user.name} 
+        = link_to "Admin-Dashboard",  [:admin], title: "Admin-Dashboard"
+        = link_to "Pages",  [:admin, :pages], title: "Pages"        
+        = link_to "Orders",  [:admin, :orders], title: "Orders"        
+        = link_to "Users",  [:admin, :users], title: "Users"        
+        = link_to "Clicks",  [:admin, :clicks], title: "Clicks"        
+        = link_to "Categories",  [:admin, :categories], title: "Categories"
+        = link_to "Packages",  [:admin, :packages], title: "Packages"        
+        = link_to "Balances",  [:admin, :balances], title: "Balances"
+        = link_to "Rewards",  [:admin, :rewards], title: "Rewards"
+        = link_to "Withdraws",  [:admin, :withdraws], title: "Withdraws"
+            
+  #page.wrap
+    #page-content= yield
+    #page-footer.clear
+      nav
+        = link_to raw("&copy;ClickMySocial")
+   

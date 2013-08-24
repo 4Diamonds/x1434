@@ -1,0 +1,2 @@
+class FacebookLike < Page
+end

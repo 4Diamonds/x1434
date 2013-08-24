@@ -1,0 +1,22 @@
+h2 Withdraws
+
+table.table
+	tr
+		th User
+		th Gateway
+		th Value
+		th Paid?
+		th Date
+		th
+	- @withdraws.each do |withdraw|
+		tr
+			td= withdraw.user
+			td= withdraw.gateway
+			td= withdraw.value
+			td= withdraw.paid
+			td= l(withdraw.created_at, format: :short)
+			td
+				- if withdraw.paid == false
+					= link_to 'Pay', [:pay_withdraw, :admin, withdraw]
+				- if withdraw.paid == true
+					= link_to 'Unpay', [:unpay_withdraw, :admin, withdraw]

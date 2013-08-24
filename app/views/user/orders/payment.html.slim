@@ -1,0 +1,36 @@
+h2.title Payment
+= render '/user/subnav'
+
+- if @order.pagseguro?
+  h3 PagSeguro Payment
+  = simple_form_for :order, :url => "https://pagseguro.uol.com.br/security/webpagamentos/webpagto.aspx" do |f|
+    = f.input :email_cobranca, as: :hidden, input_html: { name: "email_cobranca", value: "info@4diamonds.com.br"}
+    = f.input :tipo, as: :hidden, input_html: { name: "tipo", value: "CP"}
+    = f.input :moeda, as: :hidden, input_html: { name: "moeda", value: "BRL"}
+    = f.input :ref_transacao, as: :hidden, input_html: { name: "ref_transacao", value: @order.user.name}
+    = f.input :item_id_1, as: :hidden, input_html: { name: "item_id_1", value: @order.user.name}
+    = f.input :item_descr_1, as: :hidden, input_html: { name: "item_descr_1", value: @order.package.title}
+    = f.input :frete_1, as: :hidden, input_html: { name: "frete_1", value: "0"}
+    = f.input :item_quant_1, as: :hidden, input_html: { name: "item_quant_1", value: "1"}
+    = f.input :item_valor_1, as: :hidden, input_html:  { name: "item_valor_1", value: (@order.package.value * 10)}
+    p= f.submit "Comprar c/Pagseguro", class: "btn"
+
+- if @order.paypal?
+  h3 PayPal Payment
+  = simple_form_for :order, :url => "https://www.paypal.com/cgi-bin/webscr" do |f|
+    = f.input :cmd, as: :hidden, input_html: { name: "cmd", value: "_xclick"}
+    = f.input :bn, as: :hidden, input_html: { name: "bn", value: "wa_dw_2.0.4"}
+    = f.input :business, as: :hidden, input_html: { name: "business", value: "luana@centrodaconstrucao.com.br"}
+    = f.input :receiver_email, as: :hidden, input_html: { name: "receiver_email", value: "info@centrodaconstrucao.com.br"}
+    = f.input :item_number, as: :hidden, input_html: { name: "item_number", value: @order.user.name}
+    = f.input :item_name, as: :hidden, input_html: { name: "item_name", value: @order.user.name}
+    = f.input :currency_code, as: :hidden, input_html: { name: "currency_code", value: "BRL"}
+    = f.input :return, as: :hidden, input_html: { name: "return", value: "test"}
+    = f.input :cancel_return, as: :hidden, input_html: { name: "cancel_return", value: "test"}
+    = f.input :undefined_quantity, as: :hidden, input_html: { name: "undefined_quantity", value: "0"}
+    = f.input :no_shipping, as: :hidden, input_html: { name: "no_shipping", value: "1"}
+    = f.input :no_note, as: :hidden, input_html: { name: "no_note", value: "1"}
+    = f.input :custom, as: :hidden, input_html: { name: "custom", value: @order.user.name}
+    = f.input :notify_url, as: :hidden, input_html: { name: "notify_url", value: "test"}
+    = f.input :amount, as: :hidden, input_html: { name: "amount", value: @order.package.value}
+    p= f.submit "Comprar c/Paypal", class: "btn"

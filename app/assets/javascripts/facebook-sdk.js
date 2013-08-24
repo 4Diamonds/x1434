@@ -1,0 +1,1 @@
+$(document).ready(function() { $.ajaxSetup({ cache: true }); $.getScript('//connect.facebook.net/en_UK/all.js'); });

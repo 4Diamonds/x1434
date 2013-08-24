@@ -1,0 +1,8 @@
+h2 Bem vindo! #{@invitation.name}.
+p Você foi convidado para participar do Click My Social!
+
+= simple_form_for @invitation, url: invitation_accept_path(@invitation) do |f|
+  = f.input :token, as: :hidden
+  = f.input :name, as: :hidden
+  = f.input :email, as: :hidden
+  = f.submit "Clique aqui para continuar!"

@@ -1,0 +1,11 @@
+h2.title Transfer you money
+= render '/user/subnav'
+
+h3 Withdraw Order
+= simple_form_for [:user, @withdraw] do |f|
+  = f.input :value, collection: (10..(current_user.account.cash)).step(1), prompt: false, :required => true
+  = f.input :gateway, collection: Order::GATEWAYS, as: :radio_buttons, :required => true, prompt: false
+  = f.submit
+
+
+

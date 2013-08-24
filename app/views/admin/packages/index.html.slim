@@ -1,0 +1,29 @@
+h1 All Packages
+
+p= link_to 'New Package', [:new, :admin, :package], title: "New Package"
+
+table.table
+	tr
+		th category
+		th Title
+		th Coins
+		th Cash
+		th Value
+		th active
+		th
+	- @packages.each do |package|
+		tr
+			td= package.cat
+			td= package.title
+			td= package.coins
+			td= package.cash
+			td= package.value
+			td= package.active
+			td
+				= link_to 'Edit', [:edit, :admin, package], title: "Edit"
+				- if package.active == true
+					= link_to 'Desactivate', [:package_desactivate, :admin, package]
+				- if package.active == false
+					= link_to 'Activate', [:package_activate, :admin, package]	
+				= link_to 'Delete', [:admin, package], method: :delete, data: { confirm: 'Are you sure?' }
+p= link_to 'Voltar', :back

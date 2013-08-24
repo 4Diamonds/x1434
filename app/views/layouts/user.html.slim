@@ -1,0 +1,30 @@
+doctype 5
+html
+  head
+    title User::Liker
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+body
+  #session
+    .wrap
+      h1 Click My Social
+      nav 
+        small #{current_user.name} (#{number_to_currency(current_user.cash)}) Likes today: #{current_user.clicks.count}
+        = link_to "Dashboard",   [:user],               title: "Dashboard"
+        = link_to "My Account",  [:user, :accounts],    title: "My Account"
+        = link_to "My Pages",    [:user, :pages],       title: "My Pages"
+        = link_to "Pages clicked", [:user, :clicks],       title: "Pages clicked"
+        = link_to "Invitations", [:user, :invitations], title: "Invitations"
+        = link_to "Daily Bonus", [:user, :rewards], title: "Daily Bonus"
+        = link_to "Logout",      [:destroy, :user, :session], title: "Logout", method: :delete
+  #page.wrap
+    #page-content= yield
+    #page-footer.clear
+      nav
+        = link_to raw("&copy;ClickMySocial")
+        = link_to "Sobre a empresa", about_path
+        = link_to "Termos de uso", terms_path
+        = link_to "Politica de privacidade", privacy_path
+        = link_to "FAQ", faq_path
+    #fb-root

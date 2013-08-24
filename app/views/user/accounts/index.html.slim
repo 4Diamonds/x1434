@@ -1,0 +1,24 @@
+h2.title My account
+= render '/user/subnav'
+
+p= link_to "Edit account", [:edit, :user, :registration]
+p= link_to 'Add Cash - Buy Coins', [:user, :orders]
+p= link_to 'Withdraw Cash', [:user, :withdraws]
+
+h4= "COINS: #{number_to_coins(current_user.account.coins)} -:- CASH: #{number_to_currency(current_user.account.cash)}"
+
+h2 Account Balance
+table.table
+  tr
+    th Title
+    th Value
+    th Current Coins
+    th Current Cash
+    th Paid
+  - @balance.each do |balance|
+    tr
+      td= balance
+      td= balance.value
+      td= number_to_coins(balance.current_coins)
+      td= number_to_currency(balance.current_cash)
+      td

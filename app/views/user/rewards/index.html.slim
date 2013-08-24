@@ -1,0 +1,36 @@
+h2.title My Rewards
+= render '/user/subnav'
+
+- if current_user.daily_bonus 
+
+	- unless current_user.has_Daily?
+
+		= link_to "Get Bonus", [:new, :user, :reward]
+
+	- else
+		p You already got your Daily Bonus for today
+- else
+	
+	p You have to reach 15 Likes to get your Daily Bonus
+
+p= current_user.has_Daily?
+
+- unless @rewards.any?
+    p You do not have any reward until now
+-	else
+
+	h2 Rewards 
+	table.table
+	  tr
+	    th Title
+	    th Value
+	    th Data
+	  - @rewards.each do |reward|
+	    tr
+	      td= reward.kind
+	      td= reward.value
+	      td= reward.created_at
+  
+
+= link_to 'Menu', :root
+= link_to 'voltar', :back

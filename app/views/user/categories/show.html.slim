@@ -1,0 +1,24 @@
+h2.title= @category
+= render '/user/subnav'
+
+- if notice
+  p= notice
+h3.msg
+- case @category.name
+- when 'Facebook likes'
+		#pages-area= render '/user/facebook_likes'
+- when 'Facebook share'
+		#pages-area= render '/user/facebook_share'
+- when 'Facebook comment'
+		#pages-area= render '/user/facebook_comment'
+- when 'Facebook subscribe'
+		#pages-area= render '/user/facebook_subscribe'				
+- when 'Facebook followers'
+		#pages-area= render '/user/facebook_followers'
+- when 'Instagram likes'
+		#pages-area= render '/user/instagram_likes'
+- when 'Instagram followers'
+		#pages-area= render '/user/instagram_followers'
+- when 'Twitter followers'
+		#pages-area= render '/user/twitter_followers'							
+end

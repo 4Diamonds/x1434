@@ -1,0 +1,23 @@
+h1 Balances
+
+table.table
+	tr
+		th User
+		th Value
+		th Kind
+		th Title
+		th Cash
+		th Coins
+		th Data
+		th
+	- @balances.each do |balance|
+		tr	
+			td= balance.account.user
+			td= balance.value
+			td= balance.kind
+			td= balance.title
+			td= balance.current_cash
+			td= balance.current_coins
+			td= l(balance.created_at, format: :short)
+			td
+p= link_to 'Voltar', :back

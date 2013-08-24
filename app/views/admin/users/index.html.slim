@@ -1,0 +1,27 @@
+h1 Users
+
+table.table
+	tr
+		th id
+		th Name
+		th cash
+		th coins
+		th user since
+		th active
+		th
+
+	-@users.each do|user|
+		tr
+			td= user.id
+			td= user.name
+			td= user.account.cash
+			td= user.account.coins
+			td= l(user.created_at, format: :short)
+			td= user.active
+			td
+				= link_to 'Edit', [:edit, :admin, user]
+				- if user.active == true
+					= link_to 'Desactivate', [:user_desactivate, :admin, user]
+				- if user.active == false
+					= link_to 'Activate', [:user_activate, :admin, user]
+	

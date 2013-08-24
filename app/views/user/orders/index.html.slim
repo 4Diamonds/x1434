@@ -1,0 +1,27 @@
+h2.title My Orders
+= render '/user/subnav'
+
+p= link_to "Add Credits", [:new, :user, :order]
+
+- unless @orders.any?
+  p You do not have any orders until now
+-else
+  table.table
+	  tr
+	    th Package
+	    th Value
+	    th Data
+	    th Paid
+	    th Return
+	    th
+	  - @orders.each do |order|
+	    tr
+				td= order.package
+				td= order.value
+				td= l(order.created_at, format: :short)
+				td= order.paid
+				td= order.return
+				td
+
+
+= link_to 'voltar', :back

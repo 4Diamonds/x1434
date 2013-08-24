@@ -1,0 +1,119 @@
+#session {
+  background-color: #4c66a4;
+  padding: 6px 0;
+  
+  h1 {
+    margin: 0;
+    color: white;
+  }
+  
+  nav {
+    position: absolute;
+    right: 0; top: 7px;
+  }
+  
+  a {
+    color: #9aa9c8;
+    font-weight: bold;
+    margin-left: 15px;
+    
+    &:hover { color: white }
+  }
+}
+
+#login-box {
+  width: 285px;
+  margin: 60px auto;
+}
+
+#page-footer {
+  border-top: 1px solid #AAA;
+  padding-top: 12px;
+}
+
+.title {
+  font-size: 22px;
+  padding: 0 0 5px 0;
+  border-bottom: 1px solid #AAA;
+}
+
+.pages {
+  padding: none;
+  list-style: none;
+  
+  li {
+    width: 110px;
+    display: inline-block;
+    background-color: white;
+    margin: 0 15px 15px 0;
+    text-align: center;
+    padding: 15px;
+    vertical-align: top;
+  }
+  
+  a {
+    padding: 4px 15px;
+    display: inline-block;
+    color: white;
+    background-color: #1B7EE0;
+    
+    &.green { background-color: green }
+  }
+  
+  strong {
+    margin: 5px 0;
+    display: block;
+  }
+}
+
+.half-column {
+  width: 465px;
+  float: left;
+  
+  &.left {
+    margin-right: 20px;
+  }
+}
+
+.table {
+  width: 100%;
+  background-color: white;
+  
+  th, td {
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #d8dfea;
+    color: #3b5998;
+  }
+}
+
+.sub-nav {
+  margin-top: 20px;
+  
+  a {
+    padding: 3px 0;
+    border-bottom: 5px solid #c8d1e2;
+    &:hover{ border-color: #94a0c1; text-decoration: none }
+  }
+}
+
+.hidden { display: none; }
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+textarea {
+  padding: 5px;
+  border: 1px solid #DDD;
+}
+
+.clear { clear: both }
+
+.wrap {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+}

@@ -1,0 +1,6 @@
+= simple_form_for [:admin, @category], :validate=> true do |f|
+	fieldset
+		= f.error_notification
+		= f.input :name
+		= f.input	:active
+	= f.button :submit	

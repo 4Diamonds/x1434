@@ -1,0 +1,9 @@
+= simple_form_for [:admin, @user], :validate=> true do |f|
+	fieldset
+		= f.error_notification
+		= f.input :name
+		= f.input :email
+		= f.input :paypal_email
+		= f.input :pagseguro_email
+		= f.input :active
+	= f.button :submit

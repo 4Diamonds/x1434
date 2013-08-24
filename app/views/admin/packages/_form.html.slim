@@ -1,0 +1,10 @@
+= simple_form_for [:admin, @package], :validate=> true do |f|
+	fieldset
+		= f.error_notification
+		= f.input :cat
+		= f.input :title
+		= f.input :coins
+		= f.input :cash
+		= f.input :value
+		= f.input :active
+	= f.button :submit	

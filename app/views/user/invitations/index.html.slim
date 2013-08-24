@@ -1,0 +1,15 @@
+h2.title Indicações que fiz:
+= render '/user/subnav'
+
+p= link_to "Indicar um amigo", [:new, :user, :invitation], title: "Indicar um amigo"
+
+- if @invitations.any?
+  table.table
+    tr
+      th(colspan="2") Tabela de indicações
+    - @invitations.each do |invitation|
+      tr
+        td(width="12px")= image_tag "invitation-accept-#{invitation.accept?}.png"
+        td
+          h3= invitation
+          small= invitation.email

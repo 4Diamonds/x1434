@@ -1,0 +1,10 @@
+h2.title Pages that i clicked...
+= render '/user/subnav'
+
+table.table
+  th(width="120px") Date of click
+  th Page name
+  - @clicks.each do |click|
+    tr
+      td= l(click.created_at, format: :short)
+      td= click

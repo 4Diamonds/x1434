@@ -1,0 +1,15 @@
+h1 Rewards
+
+table.table
+	tr
+		td ID
+		td Kind
+		td Value
+		td Data
+	- @rewards.each do |reward|
+		th
+			tr= reward.id
+			tr= reward.kind
+			tr= reward.value
+			tr= l(reward.created_at, format: :short)
+p= link_to 'Voltar', :back

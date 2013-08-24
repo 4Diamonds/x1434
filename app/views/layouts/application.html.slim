@@ -1,0 +1,24 @@
+doctype 5
+html
+  head
+    title Facebook::Liker
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+body
+  #page
+    #page-nav
+      nav
+        = link_to "Dashboard",  [:user], title: "Dashboard"
+        = link_to "Acessar minha conta",  [:new, :user, :session], title: "Acessar minha conta"
+        = link_to "Registrar",  [:new, :user, :registration], title: "Registrar"
+    #page-content= yield
+    #fb-root
+br
+p
+  nav
+    = link_to raw("&copy;ClickMySocial")
+    = link_to "Sobre a empresa", about_path
+    = link_to "Termos de uso", terms_path
+    = link_to "Politica de privacidade", privacy_path
+    = link_to "FAQ", faq_path
